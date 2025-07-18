@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: prometheus
   namespace: monitoring
-spec: 
+spec:
   replicas: 1
   selector:
     matchLabels:
@@ -26,10 +26,8 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name
-
+            name: prometheus-config
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,5 +40,5 @@ spec:
     - protocol: TCP
       port: 9090
       targetPort: 9090
-      nodeport: 32001
-type: NodePort
+      nodePort: 32001 
+  type: NodePort
